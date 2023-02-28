@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Form</title>
+        
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    </head>
+    <body>
+        <form class="form" action="./" method="POST" id='form'>
+            <!-- Head -->
+            <div class="form__item">
+                <h1 class="form__title">House Price Prediction</h1>
+                <h2 class="form__desc">Enter the features to get the price of your house</h2>
+            </div>
+
+            {% if error %}
+            <div class="form__item form__message__item form__message__error">
+                <h1 class="form__message"> An error has occured! <br> Message: {{ error }} </h1>
+            </div>
+            {% elif Price %}
+            <div class="form__item form__message__item form__message__success">
+                <h1 class="form__message"> Predicted Price: {{Price}}/- </h1>
+            </div>
+            {% endif %}
+
+            <div class="form__item">
+                <label for="area" class="form__label"> Enter your total area: </label>
+                <input type="text" placeholder="Eg 1000" name="area" id="area" class="form__input {{ 'form__input--error' if area_error else '' }}" required>
+                <label for="area" class="form__error">Error! {{ error }}</label>
+            </div>
+
+            <div class="form__item">
+                <label for="BHK" class="form__label"> Enter the number of bedrooms: </label>
+                <input type="number" placeholder="Eg 2" name="BHK_NO." id="BHK_NO." class="form__input {{ 'form__input--error' if bedroom_error else '' }}" required>
+                <label for="BHK_NO." class="form__error">Error! {{ error }}</label>
+            </div>
+
+             <div class="form__item">
+                <span class="form__label">Tier:</span>
+                <select name="city_tier" id="city_tier" required>
+                    <option value="1">1</option
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            
+            <div class="form__item">
+                <div>
+                    <span class="form__label">Resale?</span>
+                    <br>
+                    <input type="radio" name="RESALE" id="RESALE0" value="1" checked="checked" class="form__box">
+                    <span class="form__label form__box__label">yes</span>
+                    <br>
+                    <input type="radio" name="RESALE" id="RESALE1" value="0" class="form__box">
+                    <span class="form__label form__box__label">no</span>
+                </div>
+            </div>
+            
+            <div class="form__item">
+                <div>
+                    <span class="form__label">Ready to move?</span>
+                    <br>
+                    <input type="radio" name="READY_TO_MOVE" id="READY_TO_MOVE0" value="1" checked="checked" class="form__box">
+                    <span class="form__label form__box__label">yes</span>
+                    <br>
+                    <input type="radio" name="Move" id="READY_TO_MOVE1" value="0" class="form__box">
+                    <span class="form__label form__box__label">no</span>
+                </div>
+            </div>
+
+            <div class="form__item">
+                <div>
+                    <span class="form__label">Is the house under rera scheme?</span>
+                    <br>
+                    <input type="radio" name="RERA" id="RERA0" value="1" checked="checked" class="form__box">
+                    <span class="form__label form__box__label">yes</span>
+                    <br>
+                    <input type="radio" name="RERA" id="RERA1" value="0" class="form__box">
+                    <span class="form__label form__box__label">no</span>
+                </div>
+            </div>
+
+
+            <div class="form__item">
+                <div>
+                    <span class="form__label">Under Construction</span>
+                    <br>
+                    <input type="radio" name="UNDER_CONSTRUCTION" id="UNDER_CONSTRUCTION0" value="1" checked="checked" class="form__box">
+                    <span class="form__label form__box__label">yes</span>
+                    <br>
+                    <input type="radio" name="UNDER_CONSTRUCTION" id="UNDER_CONSTRUCTION1" value="0" class="form__box">
+                    <span class="form__label form__box__label">no</span>
+                </div>
+            </div>
+
+          
+           
+            
+            <!-- Submit and Reset -->
+            <div class="form__end">
+                <button type="submit" class="form__btn submit">Submit</button>
+                <button type="reset" class="form__btn reset">Clear Response</button>
+            </div>
+        </form>
+    </body>
+</html>
